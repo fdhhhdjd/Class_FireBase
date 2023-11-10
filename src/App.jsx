@@ -5,7 +5,6 @@ import { useRoutes } from "react-router-dom";
 import Route from "@/routers";
 
 const App = () => {
-  console.log(process.env.API_KEY);
   return useRoutes(Route);
 };
 
