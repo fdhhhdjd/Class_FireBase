@@ -12,7 +12,7 @@ export const registerInitial = createAsyncThunk(
       // Create new account
       const userCredential = await auth.createUserWithEmailAndPassword(
         email,
-        password
+        password,
       );
       // If account create success, assign value into variable user
       const user = userCredential.user;
@@ -29,5 +29,5 @@ export const registerInitial = createAsyncThunk(
       console.error("Error during registration:", error);
       return error;
     }
-  }
+  },
 );
