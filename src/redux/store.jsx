@@ -10,16 +10,20 @@ import { NODE_APP } from "@/common/constants";
 const middleware = [thunk];
 
 const checkLogDev = process.env.NODE_ENV === NODE_APP.DEV;
+
 if (checkLogDev) {
   middleware.push(logger);
 }
 
-const reducer = combineReducers({
+const rootReducer = combineReducers({
   auth: AuthReducer,
 });
 
 const store = configureStore({
-  reducer: reducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(middleware),
+  devTools: checkLogDev,
 });
+
 export default store;

@@ -17,7 +17,7 @@ const AuthSlice = createSlice({
     },
   },
   extraReducers: {
-    [registerInitial.pending]: (state, action) => {
+    [registerInitial.pending]: (state, _) => {
       return { ...state, isLoading: true };
     },
     [registerInitial.fulfilled]: (state, action) => {
@@ -29,7 +29,7 @@ const AuthSlice = createSlice({
   },
 });
 const AuthReducer = AuthSlice.reducer;
-// eslint-disable-next-line react-refresh/only-export-components
+
 export const { resetDataAuth } = AuthSlice.actions;
 
 export default AuthReducer;

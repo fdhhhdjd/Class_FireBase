@@ -1,4 +1,4 @@
 export const NODE_APP = {
-  DEV: "dev",
+  DEV: "development",
   PRO: "pro",
 };
