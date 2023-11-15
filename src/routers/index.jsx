@@ -1,19 +1,19 @@
 //* IMPORT
-import AboutPage from "@/pages/about/page";
-import AuthPage from "@/pages/auth";
-import HomePage from "@/pages/home/page";
+import AboutPage from '@/pages/about/page';
+import AuthPage from '@/pages/auth';
+import HomePage from '@/pages/home/page';
 
 export default [
   {
-    path: "/",
+    path: '/',
     element: <HomePage />,
   },
   {
-    path: "/about",
+    path: '/about',
     element: <AboutPage />,
   },
   {
-    path: "/login",
+    path: '/login',
     element: <AuthPage />,
   },
 ];

@@ -1,18 +1,18 @@
 //* LIB
-import Lottie from "lottie-react";
-import React from "react";
+import Lottie from 'lottie-react';
+import React from 'react';
 
-const ButtonSocial = ({ content, optionAnimation }) => {
+const ButtonSocial = ({ content, optionAnimation, onLoginSocial }) => {
   return (
     <React.Fragment>
-      <div className="login">
+      <div className="login" onClick={onLoginSocial}>
         <div className="google-btn">
           <div className="google-icon-wrapper">
             <Lottie
               {...optionAnimation}
               style={{
-                width: "3rem",
-                height: "3rem",
+                width: '3rem',
+                height: '3rem',
               }}
             />
           </div>

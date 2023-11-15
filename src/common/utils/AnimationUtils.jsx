@@ -4,7 +4,7 @@ export const createDefaultOptions = (animationData) => {
     autoplay: true,
     animationData: animationData.default,
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
+      preserveAspectRatio: 'xMidYMid slice',
     },
   };
 };

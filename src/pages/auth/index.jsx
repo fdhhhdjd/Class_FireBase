@@ -1,10 +1,10 @@
 //* LIB
-import React from "react";
+import React from 'react';
 
 //* IMPORT
-import LoginPage from "./login/page";
-import RegisterPage from "./register/page";
-import Contents from "@/components/ContentsAuth";
+import LoginPage from './login/page';
+import RegisterPage from './register/page';
+import Contents from '@/components/ContentsAuth';
 
 const AuthPage = () => {
   const [isChangePage, setIsChangePage] = React.useState(false);
@@ -13,7 +13,7 @@ const AuthPage = () => {
   };
   return (
     <React.Fragment>
-      <div className={`container1 ${isChangePage ? "sign-up-mode" : ""}`}>
+      <div className={`container1 ${isChangePage ? 'sign-up-mode' : ''}`}>
         <div className="forms-container">
           <div className="signin-signup">
             <LoginPage />

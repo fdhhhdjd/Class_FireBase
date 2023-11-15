@@ -1,5 +1,5 @@
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 
 const firebaseConfig = {
   apiKey: process.env.API_KEY,
@@ -14,5 +14,11 @@ firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
+facebookAuthProvider.addScope('user_birthday');
+facebookAuthProvider.addScope('email');
+facebookAuthProvider.setCustomParameters({
+  display: 'popup',
+});
 
-export { auth, googleAuthProvider };
+export { auth, googleAuthProvider, facebookAuthProvider };

@@ -1,8 +1,8 @@
 //* LIB
-import { useRoutes } from "react-router-dom";
+import { useRoutes } from 'react-router-dom';
 
 //* IMPORT
-import Route from "@/routers";
+import Route from '@/routers';
 
 const App = () => {
   return useRoutes(Route);
