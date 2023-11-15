@@ -6,6 +6,7 @@ import {
   loginFacebookInitial,
   loginGoogleInitial,
   loginInitial,
+  logoutInitial,
   registerInitial,
   sendPasswordResetEmailInitial,
 } from './authThunk';
@@ -78,6 +79,17 @@ const AuthSlice = createSlice({
       return { ...state, isLoading: false, resetPassword: true };
     },
     [sendPasswordResetEmailInitial.rejected]: (state, action) => {
+      return { ...state, isLoading: false, error: action.payload };
+    },
+
+    // Todo: 5. Reset Password
+    [logoutInitial.pending]: (state, _) => {
+      return { ...state, isLoading: true };
+    },
+    [logoutInitial.fulfilled]: (state, _) => {
+      return { ...state, isLoading: false };
+    },
+    [logoutInitial.rejected]: (state, action) => {
       return { ...state, isLoading: false, error: action.payload };
     },
   },

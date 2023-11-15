@@ -12,6 +12,7 @@ import {
   loginFacebookInitial,
   loginGoogleInitial,
   loginInitial,
+  logoutInitial,
   sendPasswordResetEmailInitial,
 } from '@/redux/auth/authThunk';
 
@@ -105,14 +106,8 @@ const LoginPage = () => {
           </Link>
         </p>
       </form>
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          return dispatch(sendPasswordResetEmailInitial());
-        }}
-      >
-        Reset Password
-      </button>
+      <button onClick={() => dispatch(sendPasswordResetEmailInitial())}>Reset Password</button>
+      <button onClick={() => dispatch(logoutInitial())}>logout</button>
     </React.Fragment>
   );
 };

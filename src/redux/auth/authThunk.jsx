@@ -116,3 +116,23 @@ export const sendPasswordResetEmailInitial = createAsyncThunk(
     }
   },
 );
+
+// Todo 5: Handle logout account into firebase
+export const logoutInitial = createAsyncThunk(
+  'auth/logout',
+  async (_ = {}, { rejectWithValue }) => {
+    try {
+      // Login with email,password
+      await auth.signOut();
+
+      showSuccessToast(`Logout success`);
+      // return all data user redux toolkit
+    } catch (error) {
+      // Info error
+      showErrorToast(handleAuthError(error));
+      // If error return error redux toolkit
+      console.error('Error during registration:', error);
+      return rejectWithValue(error);
+    }
+  },
+);
