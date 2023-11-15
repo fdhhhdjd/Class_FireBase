@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 //* IMPORT
-import { loginInitial, registerInitial } from './authThunk';
+import { loginGoogleInitial, loginInitial, registerInitial } from './authThunk';
 
 const initialState = {
   authData: null,
@@ -38,6 +38,17 @@ const AuthSlice = createSlice({
       return { ...state, isLoading: false, authData: action.payload };
     },
     [loginInitial.rejected]: (state, action) => {
+      return { ...state, isLoading: false, error: action.payload };
+    },
+
+    // Todo: 3. Login Google
+    [loginGoogleInitial.pending]: (state, _) => {
+      return { ...state, isLoading: true };
+    },
+    [loginGoogleInitial.fulfilled]: (state, action) => {
+      return { ...state, isLoading: false, authData: action.payload };
+    },
+    [loginGoogleInitial.rejected]: (state, action) => {
       return { ...state, isLoading: false, error: action.payload };
     },
   },

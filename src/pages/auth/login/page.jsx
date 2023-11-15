@@ -8,7 +8,7 @@ import ButtonSocial from '@/components/Button/ButtonSocial';
 import { Link } from 'react-router-dom';
 import { JSON } from '@/assets';
 import { useDispatch } from 'react-redux';
-import { loginInitial } from '@/redux/auth/authThunk';
+import { loginGoogleInitial, loginInitial } from '@/redux/auth/authThunk';
 
 const LoginPage = () => {
   const {
@@ -37,6 +37,7 @@ const LoginPage = () => {
             <ButtonSocial
               content="Sign in Google +"
               optionAnimation={createDefaultOptions(JSON.googleJson)}
+              onHandleClick={() => dispatch(loginGoogleInitial())}
             />
           </div>
           {/* Login Facebook */}
