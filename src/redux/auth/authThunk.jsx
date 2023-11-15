@@ -117,7 +117,7 @@ export const sendPasswordResetEmailInitial = createAsyncThunk(
   },
 );
 
-// Todo 5: Handle logout account into firebase
+// Todo 6: Handle logout account into firebase
 export const logoutInitial = createAsyncThunk(
   'auth/logout',
   async (_ = {}, { rejectWithValue }) => {

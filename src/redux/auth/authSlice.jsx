@@ -82,7 +82,7 @@ const AuthSlice = createSlice({
       return { ...state, isLoading: false, error: action.payload };
     },
 
-    // Todo: 5. Reset Password
+    // Todo: 6. Reset Password
     [logoutInitial.pending]: (state, _) => {
       return { ...state, isLoading: true };
     },
