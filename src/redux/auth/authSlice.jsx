@@ -1,6 +1,8 @@
 //* LIB
-import { createSlice } from "@reduxjs/toolkit";
-import { registerInitial } from "./authThunk";
+import { createSlice } from '@reduxjs/toolkit';
+
+//* IMPORT
+import { loginInitial, registerInitial } from './authThunk';
 
 const initialState = {
   authData: null,
@@ -9,7 +11,7 @@ const initialState = {
 };
 
 const AuthSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {
     resetDataAuth: (state) => {
@@ -17,6 +19,7 @@ const AuthSlice = createSlice({
     },
   },
   extraReducers: {
+    // Todo: 1. Register
     [registerInitial.pending]: (state, _) => {
       return { ...state, isLoading: true };
     },
@@ -24,6 +27,17 @@ const AuthSlice = createSlice({
       return { ...state, isLoading: false, authData: action.payload };
     },
     [registerInitial.rejected]: (state, action) => {
+      return { ...state, isLoading: false, error: action.payload };
+    },
+
+    // Todo: 2. Login
+    [loginInitial.pending]: (state, _) => {
+      return { ...state, isLoading: true };
+    },
+    [loginInitial.fulfilled]: (state, action) => {
+      return { ...state, isLoading: false, authData: action.payload };
+    },
+    [loginInitial.rejected]: (state, action) => {
       return { ...state, isLoading: false, error: action.payload };
     },
   },

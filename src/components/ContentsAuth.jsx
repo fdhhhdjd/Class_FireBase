@@ -1,12 +1,12 @@
 //* LIB
-import React from "react";
-import Lottie from "lottie-react";
+import React from 'react';
+import Lottie from 'lottie-react';
 
 //* IMPORT
-import * as computer from "@/assets/jsons/computer.json";
-import * as marketing from "@/assets/jsons/marketing.json";
-import { createDefaultOptions } from "@/utils/AnimationUtils";
-import Button from "./Button/Button";
+import * as computer from '@/assets/jsons/computer.json';
+import * as marketing from '@/assets/jsons/marketing.json';
+import { createDefaultOptions } from '@/common/utils/AnimationUtils';
+import Button from './Button/Button';
 
 const Contents = ({ onChangePage }) => {
   return (
@@ -16,8 +16,8 @@ const Contents = ({ onChangePage }) => {
           <div className="content">
             <h3>Note New Here?</h3>
             <p>
-              Hello everyone,i am tai,you is have account yet ? Can I help you?
-              I am ready to help you now !
+              Hello everyone,i am tai,you is have account yet ? Can I help you? I am ready to help
+              you now !
             </p>
             <Button
               className="btn transparent"
@@ -34,8 +34,7 @@ const Contents = ({ onChangePage }) => {
           <div className="content">
             <h3>Are you ready to go home website?</h3>
             <p>
-              Thank you was a visit company TaiHeo Dev Web, I wish you a good
-              day,I love you so much
+              Thank you was a visit company TaiHeo Dev Web, I wish you a good day,I love you so much
             </p>
             <Button
               className="btn transparent"
