@@ -16,4 +16,11 @@ const auth = firebase.auth();
 
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
-export { auth, googleAuthProvider };
+const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
+facebookAuthProvider.addScope('user_birthday');
+facebookAuthProvider.addScope('email');
+facebookAuthProvider.setCustomParameters({
+  display: 'popup',
+});
+
+export { auth, googleAuthProvider, facebookAuthProvider };

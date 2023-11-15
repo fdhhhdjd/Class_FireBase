@@ -2,7 +2,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 //* IMPORT
-import { auth, googleAuthProvider } from '@/common/configs/database/firebase';
+import { auth, facebookAuthProvider, googleAuthProvider } from '@/common/configs/database/firebase';
 import { handleAuthError } from '@/common/utils/Error';
 import { showErrorToast, showSuccessToast } from '@/common/utils/Toast';
 
@@ -66,6 +66,47 @@ export const loginGoogleInitial = createAsyncThunk(
       showSuccessToast('Login google Success');
       // return all data user redux toolkit
       return user;
+    } catch (error) {
+      // Info error
+      showErrorToast(handleAuthError(error));
+      // If error return error redux toolkit
+      console.error('Error during registration:', error);
+      return rejectWithValue(error);
+    }
+  },
+);
+
+// Todo 4: Handle login facebook account into firebase
+export const loginFacebookInitial = createAsyncThunk(
+  'auth/login/facebook',
+  async (_, { rejectWithValue }) => {
+    try {
+      // Login with email,password
+      const { user } = await auth.signInWithPopup(facebookAuthProvider);
+
+      showSuccessToast('Login Facebook Success');
+      // return all data user redux toolkit
+      return user;
+    } catch (error) {
+      // Info error
+      showErrorToast(handleAuthError(error));
+      // If error return error redux toolkit
+      console.error('Error during registration:', error);
+      return rejectWithValue(error);
+    }
+  },
+);
+
+// Todo 5: Handle reset password account into firebase
+export const sendPasswordResetEmailInitial = createAsyncThunk(
+  'auth/reset/password',
+  async ({ email = 'nguyentientai10@gmail.com' } = {}, { rejectWithValue }) => {
+    try {
+      // Login with email,password
+      auth.sendPasswordResetEmail(email);
+
+      showSuccessToast(`Link reset had send into gmail ${email}`);
+      // return all data user redux toolkit
     } catch (error) {
       // Info error
       showErrorToast(handleAuthError(error));

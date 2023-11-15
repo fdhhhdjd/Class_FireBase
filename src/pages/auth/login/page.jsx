@@ -8,7 +8,12 @@ import ButtonSocial from '@/components/Button/ButtonSocial';
 import { Link } from 'react-router-dom';
 import { JSON } from '@/assets';
 import { useDispatch } from 'react-redux';
-import { loginGoogleInitial, loginInitial } from '@/redux/auth/authThunk';
+import {
+  loginFacebookInitial,
+  loginGoogleInitial,
+  loginInitial,
+  sendPasswordResetEmailInitial,
+} from '@/redux/auth/authThunk';
 
 const LoginPage = () => {
   const {
@@ -45,6 +50,7 @@ const LoginPage = () => {
             <ButtonSocial
               content="Sign in Facebook +"
               optionAnimation={createDefaultOptions(JSON.facebookJson)}
+              onHandleClick={() => dispatch(loginFacebookInitial())}
             />
           </div>
         </div>
@@ -99,6 +105,14 @@ const LoginPage = () => {
           </Link>
         </p>
       </form>
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          return dispatch(sendPasswordResetEmailInitial());
+        }}
+      >
+        Reset Password
+      </button>
     </React.Fragment>
   );
 };

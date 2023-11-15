@@ -2,10 +2,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 //* IMPORT
-import { loginGoogleInitial, loginInitial, registerInitial } from './authThunk';
+import {
+  loginFacebookInitial,
+  loginGoogleInitial,
+  loginInitial,
+  registerInitial,
+  sendPasswordResetEmailInitial,
+} from './authThunk';
 
 const initialState = {
   authData: null,
+  resetPassword: false,
   isLoading: false,
   error: null,
 };
@@ -49,6 +56,28 @@ const AuthSlice = createSlice({
       return { ...state, isLoading: false, authData: action.payload };
     },
     [loginGoogleInitial.rejected]: (state, action) => {
+      return { ...state, isLoading: false, error: action.payload };
+    },
+
+    // Todo: 4. Login Facebook
+    [loginFacebookInitial.pending]: (state, _) => {
+      return { ...state, isLoading: true };
+    },
+    [loginFacebookInitial.fulfilled]: (state, action) => {
+      return { ...state, isLoading: false, authData: action.payload };
+    },
+    [loginFacebookInitial.rejected]: (state, action) => {
+      return { ...state, isLoading: false, error: action.payload };
+    },
+
+    // Todo: 5. Reset Password
+    [sendPasswordResetEmailInitial.pending]: (state, _) => {
+      return { ...state, isLoading: true };
+    },
+    [sendPasswordResetEmailInitial.fulfilled]: (state, _) => {
+      return { ...state, isLoading: false, resetPassword: true };
+    },
+    [sendPasswordResetEmailInitial.rejected]: (state, action) => {
       return { ...state, isLoading: false, error: action.payload };
     },
   },
