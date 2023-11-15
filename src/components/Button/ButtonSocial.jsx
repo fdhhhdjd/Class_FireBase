@@ -1,6 +1,6 @@
 //* LIB
-import Lottie from "lottie-react";
-import React from "react";
+import Lottie from 'lottie-react';
+import React from 'react';
 
 const ButtonSocial = ({ content, optionAnimation }) => {
   return (
@@ -11,8 +11,8 @@ const ButtonSocial = ({ content, optionAnimation }) => {
             <Lottie
               {...optionAnimation}
               style={{
-                width: "3rem",
-                height: "3rem",
+                width: '3rem',
+                height: '3rem',
               }}
             />
           </div>

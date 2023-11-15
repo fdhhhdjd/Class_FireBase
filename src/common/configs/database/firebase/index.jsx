@@ -1,5 +1,5 @@
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 
 const firebaseConfig = {
   apiKey: process.env.API_KEY,

@@ -1,11 +1,11 @@
 //* LIB
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import logger from "redux-logger";
-import thunk from "redux-thunk";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 
 //* IMPORT
-import AuthReducer from "./auth/authSlice";
-import { NODE_APP } from "@/common/constants";
+import AuthReducer from './auth/authSlice';
+import { NODE_APP } from '@/common/constants';
 
 const middleware = [thunk];
 
@@ -21,8 +21,7 @@ const rootReducer = combineReducers({
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(middleware),
   devTools: checkLogDev,
 });
 
