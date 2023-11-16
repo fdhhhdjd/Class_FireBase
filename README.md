@@ -15,7 +15,11 @@
 
 ## Tài Khoản Donate li Cf để có động lực code cho anh em tham khảo 😄.
 
-# Document: https://dev.to/onurbraga/firebase-authentication-using-react-hooks-50j0
+## . Document
+
+# 1. Firebase auth: https://dev.to/onurbraga/firebase-authentication-using-react-hooks-50j0
+
+# 2. ReCAPTCHA v3: https://www.google.com/recaptcha/admin/site/477905696
 
 ## Mk: NGUYEN TIEN TAI
 

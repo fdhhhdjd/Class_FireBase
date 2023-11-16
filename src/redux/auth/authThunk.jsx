@@ -2,7 +2,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 //* IMPORT
-import { auth, facebookAuthProvider, googleAuthProvider } from '@/common/configs/database/firebase';
+import {
+  auth,
+  facebookAuthProvider,
+  githubAuthProvider,
+  googleAuthProvider,
+} from '@/common/configs/database/firebase';
 import { handleAuthError } from '@/common/utils/Error';
 import { showErrorToast, showSuccessToast } from '@/common/utils/Toast';
 
@@ -127,6 +132,27 @@ export const logoutInitial = createAsyncThunk(
 
       showSuccessToast(`Logout success`);
       // return all data user redux toolkit
+    } catch (error) {
+      // Info error
+      showErrorToast(handleAuthError(error));
+      // If error return error redux toolkit
+      console.error('Error during registration:', error);
+      return rejectWithValue(error);
+    }
+  },
+);
+
+// Todo 7: Handle login google account into firebase
+export const loginGithubInitial = createAsyncThunk(
+  'auth/login/github',
+  async (_, { rejectWithValue }) => {
+    try {
+      // Login with email,password
+      const { user } = await auth.signInWithPopup(githubAuthProvider);
+
+      showSuccessToast('Login github Success');
+      // return all data user redux toolkit
+      return user;
     } catch (error) {
       // Info error
       showErrorToast(handleAuthError(error));

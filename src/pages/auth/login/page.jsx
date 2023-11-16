@@ -1,6 +1,7 @@
 //* LIB
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 //* IMPORT
 import { createDefaultOptions } from '@/common/utils/AnimationUtils';
@@ -10,8 +11,9 @@ import { JSON } from '@/assets';
 import { useDispatch } from 'react-redux';
 import {
   loginFacebookInitial,
+  loginGithubInitial,
   loginGoogleInitial,
-  loginInitial,
+  // loginInitial,
   logoutInitial,
   sendPasswordResetEmailInitial,
 } from '@/redux/auth/authThunk';
@@ -27,10 +29,15 @@ const LoginPage = () => {
   const passwords = React.useRef({});
   passwords.current = watch('password');
 
+  const reCaptcha = React.useRef('');
+
   const dispatch = useDispatch();
 
-  const handleLogin = (data) => {
-    dispatch(loginInitial(data));
+  const handleLogin = async () => {
+    // const token = await reCaptcha.current.executeAsync();
+    // console.log(reCaptcha.current.getValue());
+    // reCaptcha.current.reset();
+    // dispatch(loginInitial(data));
   };
 
   return (
@@ -52,6 +59,14 @@ const LoginPage = () => {
               content="Sign in Facebook +"
               optionAnimation={createDefaultOptions(JSON.facebookJson)}
               onHandleClick={() => dispatch(loginFacebookInitial())}
+            />
+          </div>
+
+          <div className="login_google">
+            <ButtonSocial
+              content="Sign in Github +"
+              optionAnimation={createDefaultOptions(JSON.githubJson)}
+              onHandleClick={() => dispatch(loginGithubInitial())}
             />
           </div>
         </div>
@@ -91,6 +106,14 @@ const LoginPage = () => {
           {errors.password?.type && 'Mật khẩu bạn nhập không chính xác'}
         </span>
         <input type="submit" name="signin" className="btn solid" />
+        <ReCAPTCHA
+          size="normal"
+          ref={reCaptcha}
+          sitekey={process.env.RE_CAPTCHA_KEY}
+          theme="light"
+          badge="bottomleft"
+        />
+
         <p
           style={{
             display: 'flex',
