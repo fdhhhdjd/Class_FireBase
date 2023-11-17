@@ -23,4 +23,6 @@ facebookAuthProvider.setCustomParameters({
   display: 'popup',
 });
 
-export { auth, googleAuthProvider, facebookAuthProvider };
+const githubAuthProvider = new firebase.auth.GithubAuthProvider();
+
+export { auth, googleAuthProvider, facebookAuthProvider, githubAuthProvider };

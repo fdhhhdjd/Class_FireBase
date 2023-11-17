@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 //* IMPORT
 import {
   loginFacebookInitial,
+  loginGithubInitial,
   loginGoogleInitial,
   loginInitial,
   logoutInitial,
@@ -90,6 +91,17 @@ const AuthSlice = createSlice({
       return { ...state, isLoading: false };
     },
     [logoutInitial.rejected]: (state, action) => {
+      return { ...state, isLoading: false, error: action.payload };
+    },
+
+    // Todo: 7. Login Github
+    [loginGithubInitial.pending]: (state, _) => {
+      return { ...state, isLoading: true };
+    },
+    [loginGithubInitial.fulfilled]: (state, action) => {
+      return { ...state, isLoading: false, authData: action.payload };
+    },
+    [loginGithubInitial.rejected]: (state, action) => {
       return { ...state, isLoading: false, error: action.payload };
     },
   },

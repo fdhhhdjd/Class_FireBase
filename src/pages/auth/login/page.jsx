@@ -1,6 +1,7 @@
 //* LIB
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 //* IMPORT
 import { createDefaultOptions } from '@/common/utils/AnimationUtils';
@@ -10,6 +11,7 @@ import { JSON } from '@/assets';
 import { useDispatch } from 'react-redux';
 import {
   loginFacebookInitial,
+  loginGithubInitial,
   loginGoogleInitial,
   loginInitial,
   logoutInitial,
@@ -27,10 +29,19 @@ const LoginPage = () => {
   const passwords = React.useRef({});
   passwords.current = watch('password');
 
+  const reCaptcha = React.useRef();
+
   const dispatch = useDispatch();
 
-  const handleLogin = (data) => {
+  const handleLogin = async (data) => {
     dispatch(loginInitial(data));
+
+    // 1. check box
+    // console.log(reCaptcha.current.getValue());
+
+    // 2. invisible
+    const token = await reCaptcha.current.executeAsync();
+    console.log(token);
   };
 
   return (
@@ -52,6 +63,14 @@ const LoginPage = () => {
               content="Sign in Facebook +"
               optionAnimation={createDefaultOptions(JSON.facebookJson)}
               onHandleClick={() => dispatch(loginFacebookInitial())}
+            />
+          </div>
+
+          <div className="login_google">
+            <ButtonSocial
+              content="Sign in Github +"
+              optionAnimation={createDefaultOptions(JSON.githubJson)}
+              onHandleClick={() => dispatch(loginGithubInitial())}
             />
           </div>
         </div>
@@ -91,6 +110,13 @@ const LoginPage = () => {
           {errors.password?.type && 'Mật khẩu bạn nhập không chính xác'}
         </span>
         <input type="submit" name="signin" className="btn solid" />
+        <ReCAPTCHA
+          ref={reCaptcha}
+          sitekey={process.env.RE_CAPTCHA_KEY}
+          size="invisible"
+          theme="light"
+          badge="bottomleft"
+        />
         <p
           style={{
             display: 'flex',
