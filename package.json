@@ -12,7 +12,8 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "pre-commit": "echo \"[Husky] pre-commit\"",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "deploy": "sh ./deploy-surge.sh"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
