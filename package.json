@@ -1,5 +1,4 @@
 {
-  "homepage": "https://fdhhhdjd.github.io/Class_FireBase",
   "name": "class-firebase",
   "private": true,
   "version": "0.0.0",
@@ -13,8 +12,7 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "pre-commit": "echo \"[Husky] pre-commit\"",
-    "lint-staged": "lint-staged",
-    "deploy-github": "gh-pages -d dist"
+    "lint-staged": "lint-staged"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
