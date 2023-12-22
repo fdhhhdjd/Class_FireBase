@@ -1,5 +1,6 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import { getMessaging, onMessage, getToken } from 'firebase/messaging';
 
 const firebaseConfig = {
   apiKey: process.env.API_KEY,
@@ -8,6 +9,7 @@ const firebaseConfig = {
   storageBucket: process.env.STORAGE_BUCKET,
   messagingSenderId: process.env.MESSAGE_SENDER_ID,
   appId: process.env.APP_ID,
+  measurementId: process.env.MEASUREMENTID,
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -24,5 +26,37 @@ facebookAuthProvider.setCustomParameters({
 });
 
 const githubAuthProvider = new firebase.auth.GithubAuthProvider();
+const messaging = getMessaging();
 
-export { auth, googleAuthProvider, facebookAuthProvider, githubAuthProvider };
+const requestForToken = async () => {
+  try {
+    const currentToken = await getToken(messaging, {
+      vapidKey: process.env.KEY_MESSAGE,
+    });
+    if (currentToken) {
+      console.log('current token for client: ', currentToken);
+    } else {
+      // Show permission request UI
+      console.log('No registration token available. Request permission to generate one.');
+    }
+  } catch (err) {
+    console.log('An error occurred while retrieving token. ', err);
+  }
+};
+
+const onMessageListener = () =>
+  new Promise((resolve) => {
+    onMessage(messaging, (payload) => {
+      console.log('payload', payload);
+      resolve(payload);
+    });
+  });
+
+export {
+  auth,
+  googleAuthProvider,
+  facebookAuthProvider,
+  githubAuthProvider,
+  requestForToken,
+  onMessageListener,
+};
