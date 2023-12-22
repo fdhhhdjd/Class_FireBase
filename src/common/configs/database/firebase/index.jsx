@@ -1,6 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { getMessaging, onMessage, getToken } from 'firebase/messaging';
+import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: process.env.API_KEY,
@@ -14,9 +15,9 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-const auth = firebase.auth();
-
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+
+const auth = firebase.auth();
 
 const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
 facebookAuthProvider.addScope('user_birthday');
@@ -51,6 +52,8 @@ const onMessageListener = () =>
       resolve(payload);
     });
   });
+const appPhone = firebase.initializeApp(firebaseConfig);
+const authPhone = getAuth(appPhone);
 
 export {
   auth,
@@ -59,4 +62,5 @@ export {
   githubAuthProvider,
   requestForToken,
   onMessageListener,
+  authPhone,
 };

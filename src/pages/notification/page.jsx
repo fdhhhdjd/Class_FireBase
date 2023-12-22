@@ -1,35 +1,11 @@
 import { requestForToken, onMessageListener } from '@/common/configs/database/firebase';
+import ToastDisplay from '@/components/Toast/ToastDisplay';
 import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
 const Notification = () => {
   const [notification, setNotification] = useState({ title: '', body: '' });
-  const notify = () => toast(<ToastDisplay />);
-  function ToastDisplay() {
-    return (
-      <div>
-        <h1>
-          <b>{notification?.title}</b>
-        </h1>
-        <p
-          style={{
-            fontSize: '1rem',
-          }}
-        >
-          {notification?.body}
-        </p>
-        <img
-          src={notification?.image}
-          style={{
-            width: 'auto',
-            height: '50px',
-            textAlign: 'center',
-            marginLeft: '4.2rem',
-          }}
-        />
-      </div>
-    );
-  }
+  const notify = () => toast(<ToastDisplay notification={notification} />);
 
   useEffect(() => {
     if (notification?.title) {
@@ -49,7 +25,12 @@ const Notification = () => {
     })
     .catch((err) => console.log('failed: ', err));
 
-  return <Toaster />;
+  return (
+    <>
+      <h1>Notification</h1>
+      <Toaster />
+    </>
+  );
 };
 
 export default Notification;

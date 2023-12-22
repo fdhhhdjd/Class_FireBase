@@ -2,6 +2,7 @@
 import 'react-toastify/dist/ReactToastify.css';
 
 //* CSS
+import './Global.css';
 import './AddEdit.css';
 import './Authentication.css';
 import './Home.css';
