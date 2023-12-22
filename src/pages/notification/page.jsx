@@ -1,9 +1,11 @@
-import { requestForToken, onMessageListener } from '@/common/configs/database/firebase';
 import ToastDisplay from '@/components/Toast/ToastDisplay';
+import useAuth from '@/hooks/useAuth';
 import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
 const Notification = () => {
+  const { requestForToken, onMessageListener } = useAuth();
+
   const [notification, setNotification] = useState({ title: '', body: '' });
   const notify = () => toast(<ToastDisplay notification={notification} />);
 
@@ -13,17 +15,18 @@ const Notification = () => {
     }
   }, [notification]);
 
-  requestForToken();
-
-  onMessageListener()
-    .then((payload) => {
-      setNotification({
-        title: payload?.notification?.title,
-        body: payload?.notification?.body,
-        image: payload?.notification?.image,
-      });
-    })
-    .catch((err) => console.log('failed: ', err));
+  useEffect(() => {
+    requestForToken();
+    onMessageListener()
+      .then((payload) => {
+        setNotification({
+          title: payload?.notification?.title,
+          body: payload?.notification?.body,
+          image: payload?.notification?.image,
+        });
+      })
+      .catch((err) => console.log('failed: ', err));
+  });
 
   return (
     <>

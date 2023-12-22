@@ -8,12 +8,15 @@ import { ToastContainer } from 'react-toastify';
 import App from './App.jsx';
 import './styles/index.jsx';
 import store from './redux/store.jsx';
+import { UserAuthContextProvider } from './contexts/UserAuthContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <Router>
-      <ToastContainer />
-      <App />
-    </Router>
+    <UserAuthContextProvider>
+      <Router>
+        <ToastContainer />
+        <App />
+      </Router>
+    </UserAuthContextProvider>
   </Provider>,
 );

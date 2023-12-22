@@ -7,13 +7,13 @@ importScripts('https://www.gstatic.com/firebasejs/8.2.0/firebase-messaging.js');
 
 // Initialize the Firebase app in the service worker by passing the generated config
 const firebaseConfig = {
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  projectId: process.env.PROJECT_ID,
-  storageBucket: process.env.STORAGE_BUCKET,
-  messagingSenderId: process.env.MESSAGE_SENDER_ID,
-  appId: process.env.APP_ID,
-  measurementId: process.env.MEASUREMENTID,
+  apiKey: "AIzaSyB8pGeybQakGG65sNuXDNXXPhSUJj431Tg",
+  authDomain: "class-react-d5c6b.firebaseapp.com",
+  projectId: "class-react-d5c6b",
+  storageBucket: "class-react-d5c6b.appspot.com",
+  messagingSenderId: "870565752408",
+  appId: "1:870565752408:web:a1a365631866f80094a42d",
+  measurementId: "G-4F1KGQ4F40"
 };
 
 firebase.initializeApp(firebaseConfig);
